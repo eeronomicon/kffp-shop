@@ -5,7 +5,7 @@ const { pathWrapper, defaultHandlerWrapper, nextHandlerWrapper } = require('./ne
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dir: './src', dev });
+const app = next({ dev });
 const server = new Hapi.Server({
     port
 });
@@ -29,32 +29,32 @@ const pluginOptions = [
 app
 .prepare()
 .then(async () => {
-    server.route({
-        method: 'GET',
-        path: '/health',
-        handler: (request, reply) => reply({ status: 'OK' })
-    });
-
-    server.route({
-        method: 'GET',
-        path: '/_next/{p*}', /* next specific routes */
-        handler: nextHandlerWrapper(app)
-    });
-
-    server.route({
-        method: 'GET',
-        path: '/product/{productId}',
-        handler: pathWrapper(app, '/product')
-    });
-
-    server.route({
-        method: 'GET',
-        path: '/{p*}', /* catch all route */
-        handler: defaultHandlerWrapper(app)
-    });
-
     try {
         // await server.register(pluginOptions); Good is not ready for Hapi 17 yet.
+        server.route({
+            method: 'GET',
+            path: '/health',
+            handler: (request, reply) => reply({ status: 'OK' })
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/_next/{p*}', /* next specific routes */
+            handler: nextHandlerWrapper(app)
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/product/{productId}',
+            handler: pathWrapper(app, '/product')
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/{p*}', /* catch all route */
+            handler: defaultHandlerWrapper(app)
+        });
+
         await server.start();
 
         console.log(`> Ready on http://localhost:${port}`);

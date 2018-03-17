@@ -1,17 +1,20 @@
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../redux/configure-store';
 import { fetchProducts } from '../redux/actions';
+import { Layout } from '../components/layout';
 import { ProductGallery } from '../components/product-gallery';
 
 const Index = props => {
     return (
-        <div>
-            <h1>Products</h1>
-            <ProductGallery
-                products={props.products}
-            />
+        <Layout>
+            <div>
+                <h1>Products</h1>
+                <ProductGallery
+                    products={props.products}
+                />
+            </div>
             <style global jsx>{`body { margin: 0; }`}</style>
-        </div>
+        </Layout>
 )};
 
 Index.getInitialProps = async ({ store, isServer }) => {
