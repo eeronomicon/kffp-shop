@@ -9,7 +9,7 @@ const app = next({ dev });
 const server = new Hapi.Server({
     port
 });
-/*
+
 const pluginOptions = [
     {
         name: 'Good',
@@ -24,13 +24,13 @@ const pluginOptions = [
         }
     }
 ];
-*/
 
 app
 .prepare()
 .then(async () => {
     try {
-        // await server.register(pluginOptions); Good is not ready for Hapi 17 yet.
+        await server.register(pluginOptions); // Good is not ready for Hapi 17 yet.
+
         server.route({
             method: 'GET',
             path: '/health',
