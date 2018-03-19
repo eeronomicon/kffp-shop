@@ -1,21 +1,34 @@
 import withRedux from 'next-redux-wrapper';
+import { Header } from 'semantic-ui-react';
 import { initStore } from '../redux/configure-store';
 import { fetchProducts } from '../redux/actions';
 import { Layout } from '../components/layout';
 import { ProductGallery } from '../components/product-gallery';
 
+const style = {
+  h3: {
+    marginTop: '2em',
+    padding: '2em 0em',
+  }
+};
+
+
 const Index = props => {
     return (
         <Layout>
-            <div>
-                <h1>Products</h1>
-                <ProductGallery
-                    products={props.products}
+            <Header
+                as="h3"
+                content="Available Products"
+                textAlign="center"
+                style={style.h3}
                 />
-            </div>
-            <style global jsx>{`body { margin: 0; }`}</style>
+            <ProductGallery
+                products={props.products}
+            />
+            <style global jsx>{`body { margin: 0; padding: 20px }`}</style>
         </Layout>
 )};
+
 
 Index.getInitialProps = async ({ store, isServer }) => {
     const { dispatch } = store;
