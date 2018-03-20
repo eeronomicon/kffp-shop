@@ -3,6 +3,13 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import { TopMenu } from '../components/menu'
 
+const globalStyles = `
+    body {
+        margin: 0;
+        padding: 20px
+    }
+`;
+
 export const Layout = ({ children }) => (
     <Fragment>
         <Head>
@@ -16,5 +23,6 @@ export const Layout = ({ children }) => (
         </Head>
         <TopMenu />
         {children}
+        <style global jsx>{globalStyles}</style>
     </Fragment>
 );

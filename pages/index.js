@@ -25,7 +25,6 @@ const Index = props => {
             <ProductGallery
                 products={props.products}
             />
-            <style global jsx>{`body { margin: 0; padding: 20px }`}</style>
         </Layout>
 )};
 

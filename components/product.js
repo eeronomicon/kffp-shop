@@ -1,24 +1,28 @@
 import Link from 'next/link';
+import { Image, Header } from 'semantic-ui-react';
 import { Fragment } from 'react';
 
-/*
 const productStyle = `
-    h2 {
-        color: red;
+    img {
+        min-height: 300px;
+    }
+
+    h3 {
+        text-align: center;
     }
 `;
-*/
 
 export const Product = ({ name, productId, image }) => (
     <Fragment>
-        <h2>{name}</h2>
         <Link href={`/product/${productId}`}>
             <a>
-                <img
+                <Image
                     src={image || 'http://via.placeholder.com/300x300'}
+                    centered
                 />
             </a>
         </Link>
-        <style>{/* productStyle */}</style>
+        <Header as="h3">{name}</Header>
+        <style>{productStyle}</style>
     </Fragment>
 );
