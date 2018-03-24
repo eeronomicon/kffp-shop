@@ -12,9 +12,9 @@ const productStyle = `
     }
 `;
 
-export const Product = ({ name, productId, image }) => (
+export const Product = ({ name, productId, image, slug }) => (
     <Fragment>
-        <Link href={`/product/${productId}`}>
+        <Link href={`/product/${slug}`}>
             <a>
                 <Image
                     src={image || 'http://via.placeholder.com/300x300'}

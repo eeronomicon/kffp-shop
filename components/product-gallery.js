@@ -2,7 +2,7 @@ import { Grid, Segment } from 'semantic-ui-react';
 import { Product } from './product';
 import { chunk } from '../utils';
 
-export const ProductGallery = ({ products }) => {
+export const ProductGallery = ({ products = [] }) => {
     const chunkedProducts = chunk(products, 3);
 
     return (

@@ -7,9 +7,7 @@ export const TopMenu = () => (
             <Menu.Item header>
                 Freeform Portland Store
             </Menu.Item>
-            <Link href="/">
-                <Menu.Item as="a">Home</Menu.Item>
-            </Link>
+            <Menu.Item href="/" as="a">Home</Menu.Item>
         </Container>
     </Menu>
 );

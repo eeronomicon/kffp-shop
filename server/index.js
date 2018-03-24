@@ -45,7 +45,7 @@ app
 
         server.route({
             method: 'GET',
-            path: '/product/{productId}',
+            path: '/product/{slug}',
             handler: pathWrapper(app, '/product')
         });
 

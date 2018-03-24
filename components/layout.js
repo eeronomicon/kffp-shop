@@ -1,12 +1,12 @@
 import 'semantic-ui-css/semantic.min.css';
 import Head from 'next/head';
 import { Fragment } from 'react';
-import { TopMenu } from '../components/menu'
+import { TopMenu } from '../components/menu';
 
 const globalStyles = `
     body {
         margin: 0;
-        padding: 20px
+        padding: 20px;
     }
 `;
 

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import withRedux from 'next-redux-wrapper';
 import { Grid, Segment, Image, Button, Header, Container } from 'semantic-ui-react';
+import { SEO } from '../components/meta';
+import { withError } from '../components/with-error';
 import { Layout } from '../components/layout';
 import { fetchProducts } from '../redux/actions';
 import { initStore } from '../redux/configure-store';
@@ -13,7 +15,7 @@ const productDetailStyle = `
 `;
 
 const ProductDetail = (props = {}) => {
-    const { products } = props;
+    const { products = [] } = props;
     const product = products.length ? products[0] : {};
     const { productId, name, price, description, image } = product;
     const { url } = props;
@@ -21,6 +23,12 @@ const ProductDetail = (props = {}) => {
 
     return (
         <Layout>
+            <SEO
+                title={name}
+                path={url}
+                description={`Freeform Portland merch - ${description}`}
+                imagePath={imageSrc}
+            />
             <Grid columns={2} stackable divided>
                 <Grid.Row columns={2}>
                     <Grid.Column>
@@ -53,19 +61,19 @@ const ProductDetail = (props = {}) => {
     );
 };
 
-/*
-    <div>{`$${price}`} USD</div>
-*/
-
-ProductDetail.getInitialProps = async ({ req, query, store }) => {
+ProductDetail.getInitialProps = async ({ req, res, query, store }) => {
     const { dispatch } = store;
-    const { productId = '' } = query;
+    const { slug = '' } = query;
 
-    const result = await dispatch(fetchProducts(productId));
+    try {
+        const result = await dispatch(fetchProducts(slug));
 
-    return {
-        url: req.url
-    };
+        return {
+            url: req.url
+        };
+    } catch (e) {
+        res.statusCode = 404;
+    }
 };
 
-export default withRedux(initStore, state => (state))(ProductDetail);
+export default withError(withRedux(initStore, state => (state))(ProductDetail));

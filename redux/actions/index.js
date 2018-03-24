@@ -5,9 +5,9 @@ const baseUrl = `${API_URL}/products`;
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 
-export const fetchProducts = id => async (dispatch, getState) => {
+export const fetchProducts = slug => async (dispatch, getState) => {
 
-    const url = id ? `${baseUrl}/${id}` : baseUrl;
+    const url = slug ? `${baseUrl}/${slug}` : baseUrl;
 
     try {
         const { data } = await axios.get(url);
@@ -17,7 +17,8 @@ export const fetchProducts = id => async (dispatch, getState) => {
             data
         });
     } catch (e) {
-        console.log(e)
-        // handle error
+        const err = new Error();
+        err.code = 'ENOENT'; // this triggers Next.js to render the 404 page server-side
+        throw err;
     }
 };

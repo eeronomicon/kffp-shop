@@ -1,8 +1,10 @@
 import withRedux from 'next-redux-wrapper';
 import { Header } from 'semantic-ui-react';
+import { withError } from '../components/with-error';
 import { initStore } from '../redux/configure-store';
 import { fetchProducts } from '../redux/actions';
 import { Layout } from '../components/layout';
+import { SEO } from '../components/meta';
 import { ProductGallery } from '../components/product-gallery';
 
 const style = {
@@ -16,6 +18,12 @@ const style = {
 const Index = props => {
     return (
         <Layout>
+            <SEO
+                title="Products"
+                path={props.url.pathname}
+                description="Freeform Portland merch"
+                imagePath="https://www.freeformportland.org/wp-content/themes/graphy-pro/images/freeform-portland.svg"
+            />
             <Header
                 as="h3"
                 content="Available Products"
@@ -29,10 +37,15 @@ const Index = props => {
 )};
 
 
-Index.getInitialProps = async ({ store, isServer }) => {
+Index.getInitialProps = async ({ res, store, isServer }) => {
     const { dispatch } = store;
 
-    await dispatch(fetchProducts());
+    try {
+        await dispatch(fetchProducts());
+
+    } catch (e) {
+        res.statusCode = 404;
+    }
 };
 
-export default withRedux(initStore, state => (state))(Index);
+export default withError(withRedux(initStore, state => (state))(Index));
