@@ -42,7 +42,6 @@ Index.getInitialProps = async ({ res, store, isServer }) => {
 
     try {
         await dispatch(fetchProducts());
-
     } catch (e) {
         res.statusCode = 404;
     }

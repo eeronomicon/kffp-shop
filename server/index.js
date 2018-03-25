@@ -57,7 +57,7 @@ app
 
         await server.start();
 
-        console.log(`> Ready on http://localhost:${port}`);
+        console.log(`> Ready on ${server.info.uri}`);
     } catch (error) {
         console.log('Error starting server');
         console.log(error);

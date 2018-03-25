@@ -1,6 +1,5 @@
-const protocol = 'http';
-const hostname = '127.0.0.1';
-const port = '3000';
 const API_BASE = '/api/v1';
 
-export const API_URL = `${protocol}://${hostname}:${port}${API_BASE}`;
+export const API_URL = process.env.NODE_ENV === 'production' ?
+    `https://admin.freeformportland.org${API_BASE}` :
+    `http://localhost:3000${API_BASE}`;

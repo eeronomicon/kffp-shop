@@ -12,6 +12,14 @@ export const fetchProducts = slug => async (dispatch, getState) => {
     try {
         const { data } = await axios.get(url);
 
+        if (!Array.isArray(data)) {
+            // we've gotten a response but it wasn't what we expected
+            return dispatch({
+                type: FETCH_PRODUCTS,
+                data: [],
+            });
+        }
+
         return dispatch({
             type: FETCH_PRODUCTS,
             data
