@@ -6,6 +6,7 @@ import { fetchProducts } from '../redux/actions';
 import { Layout } from '../components/layout';
 import { SEO } from '../components/meta';
 import { ProductGallery } from '../components/product-gallery';
+import { sortProducts } from '../redux/selectors';
 
 const style = {
   h3: {
@@ -13,6 +14,10 @@ const style = {
     padding: '2em 0em',
   }
 };
+
+const mapStateToProps = state => ({
+    products: sortProducts(state.products)
+});
 
 
 const Index = props => {
@@ -47,4 +52,4 @@ Index.getInitialProps = async ({ res, store, isServer }) => {
     }
 };
 
-export default withError(withRedux(initStore, state => (state))(Index));
+export default withError(withRedux(initStore, mapStateToProps)(Index));
