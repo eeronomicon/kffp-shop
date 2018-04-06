@@ -17,9 +17,16 @@ const productDetailStyle = `
 const ProductDetail = (props = {}) => {
     const { products = [] } = props;
     const product = products.length ? products[0] : {};
-    const { productId, name, price, description, image } = product;
+    const { productId, name, price, description, image, sizes } = product;
     const { url } = props;
-    const imageSrc = image ? image : 'http://via.placeholder.com/300x300';
+    const imageSrc = image ? image : 'https://via.placeholder.com/300x300';
+
+    const additionalProductAttributes = sizes && sizes.length ?
+    {
+        ['data-item-custom1-name']: 'Size',
+        ['data-item-custom1-options']: sizes.join('|')
+    } :
+    {};
 
     return (
         <Layout>
@@ -51,6 +58,7 @@ const ProductDetail = (props = {}) => {
                                 color="teal"
                                 content="Add to Cart"
                                 size="large"
+                                {...additionalProductAttributes}
                             />
                         </Container>
                     </Grid.Column>

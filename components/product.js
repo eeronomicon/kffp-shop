@@ -17,7 +17,7 @@ export const Product = ({ name, productId, image, slug }) => (
         <Link href={`/product/${slug}`}>
             <a>
                 <Image
-                    src={image || 'http://via.placeholder.com/300x300'}
+                    src={image || 'https://via.placeholder.com/300x300'}
                     centered
                 />
             </a>
