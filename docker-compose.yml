@@ -1,17 +1,21 @@
 version: '2'
 services:
   app:
-    mem_limit: 256MB
-    # build:
-    #   context: .
-    image: 248536655549.dkr.ecr.us-west-2.amazonaws.com/kffp-shop
+    image: 248536655549.dkr.ecr.us-east-1.amazonaws.com/kffp-shop
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: kffp-shop
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: kffpshopnode
 
   nginx:
-    mem_limit: 256MB
-    # build:
-    #   context: './docker/nginx'
-    image: 248536655549.dkr.ecr.us-west-2.amazonaws.com/reverse-proxy
+    image: 248536655549.dkr.ecr.us-east-1.amazonaws.com/reverse-proxy
     ports:
       - 80:80
-    links:
-      - app
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: kffp-shop
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: kffpshopnginx
