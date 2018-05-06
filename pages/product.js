@@ -17,7 +17,16 @@ const productDetailStyle = `
 const ProductDetail = (props = {}) => {
     const { products = [] } = props;
     const product = products.length ? products[0] : {};
-    const { productId, name, price, description, image, sizes } = product;
+    const {
+        productId,
+        name,
+        price,
+        description,
+        image,
+        sizes,
+        shippable = true,
+        weight,
+    } = product;
     const { url } = props;
     const imageSrc = image ? image : 'https://via.placeholder.com/300x300';
 
@@ -55,6 +64,8 @@ const ProductDetail = (props = {}) => {
                                 data-item-price={price}
                                 data-item-url={url}
                                 data-item-description={description}
+                                data-item-shippable={shippable}
+                                data-item-weight={weight}
                                 color="teal"
                                 content="Add to Cart"
                                 size="large"
