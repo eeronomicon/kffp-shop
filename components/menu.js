@@ -8,6 +8,9 @@ export const TopMenu = () => (
                 Freeform Portland Store
             </Menu.Item>
             <Menu.Item href="/" as="a">Home</Menu.Item>
+            <Menu.Item className="snipcart-checkout" href="#">
+                <i className="shopping cart icon"></i>
+            </Menu.Item>
         </Container>
     </Menu>
 );
