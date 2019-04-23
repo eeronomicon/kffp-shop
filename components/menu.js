@@ -5,7 +5,7 @@ export const TopMenu = () => (
     <Menu fixed="top" inverted>
         <Container>
             <Menu.Item header>
-                Freeform Portland Store
+                Thank You Gifts
             </Menu.Item>
             <Menu.Item href="/" as="a">Home</Menu.Item>
             <Menu.Item className="snipcart-checkout" href="#">
