@@ -31,7 +31,7 @@ const Index = props => {
             />
             <Header
                 as="h3"
-                content="Available Products"
+                content="Give a Gift, Receive a Gift!"
                 textAlign="center"
                 style={style.h3}
                 />
