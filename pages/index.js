@@ -24,14 +24,14 @@ const Index = props => {
     return (
         <Layout>
             <SEO
-                title="Products"
+                title="Freeform Portland"
                 path={props.url.pathname}
-                description="Freeform Portland merch"
+                description="Freeform Portland Thank You gifts"
                 imagePath="https://www.freeformportland.org/wp-content/themes/graphy-pro/images/freeform-portland.svg"
             />
             <Header
                 as="h3"
-                content="Available Products"
+                content="Give a Gift, Receive a Gift!"
                 textAlign="center"
                 style={style.h3}
                 />
